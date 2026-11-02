@@ -1,0 +1,845 @@
+{
+ "self": "https://api.tracker.yandex.net/v3/boards/214",
+ "id": 214,
+ "version": 67,
+ "name": "IT Support Tracker/Wiki/Datalens",
+ "createdAt": "2025-02-11T11:40:01.014+0000",
+ "updatedAt": "2026-09-18T11:45:40.688+0000",
+ "createdBy": {
+  "self": "https://api.tracker.yandex.net/v3/users/8000000000000053",
+  "id": "8000000000000053",
+  "display": "Владислав Куманцов",
+  "cloudUid": "ajerqrrok24ke671uklh",
+  "passportUid": 1987794709
+ },
+ "columns": [
+  {
+   "self": "https://api.tracker.yandex.net/v3/boards/214/columns/1",
+   "id": "1",
+   "display": "Открыт"
+  },
+  {
+   "self": "https://api.tracker.yandex.net/v3/boards/214/columns/2",
+   "id": "2",
+   "display": "В работе"
+  },
+  {
+   "self": "https://api.tracker.yandex.net/v3/boards/214/columns/4",
+   "id": "4",
+   "display": "Hold/ Требуется инфа"
+  },
+  {
+   "self": "https://api.tracker.yandex.net/v3/boards/214/columns/6",
+   "id": "6",
+   "display": "Ожидание ответа пользователя"
+  },
+  {
+   "self": "https://api.tracker.yandex.net/v3/boards/214/columns/5",
+   "id": "5",
+   "display": "Согласование результата"
+  },
+  {
+   "self": "https://api.tracker.yandex.net/v3/boards/214/columns/3",
+   "id": "3",
+   "display": "Закрыт, Отменено"
+  }
+ ],
+ "useRanking": false,
+ "estimateBy": {
+  "self": "https://api.tracker.yandex.net/v3/fields/storyPoints",
+  "id": "storyPoints",
+  "display": "Story Points"
+ },
+ "country": {
+  "self": "https://api.tracker.yandex.net/v3/countries/1",
+  "id": "1",
+  "display": "Россия"
+ },
+ "calendar": {
+  "id": 6
+ },
+ "autoFilterSettings": {
+  "addFilterSettings": {
+   "liveFilter": {
+    "fieldValues": [
+     {
+      "type": "standard",
+      "id": "parent",
+      "key": "parent",
+      "name": "Родительский тикет",
+      "schema": {
+       "type": "issue"
+      },
+      "fieldType": "issue",
+      "qlFieldType": "string",
+      "required": false,
+      "container": false,
+      "readonly": false,
+      "options": false,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 36,
+      "value": [
+       {
+        "fixed": {
+         "id": "67ab49fb050569394edba80f",
+         "display": "Заявки на доступ в Yandex Tracker / Wiki",
+         "key": "TRACKERSUPPORT-242",
+         "summary": "Заявки на доступ в Yandex Tracker / Wiki",
+         "hasResolution": false
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": "67ab55b2050569394edbbb47",
+         "display": "Улучшения Tracker / Wiki. Рост удовлетворенности пользователей",
+         "key": "TRACKERSUPPORT-523",
+         "summary": "Улучшения Tracker / Wiki. Рост удовлетворенности пользователей",
+         "hasResolution": false
+        },
+        "invert": false
+       }
+      ],
+      "fullLocalization": {
+       "ru": "Родительский тикет",
+       "en": "Parent issue"
+      },
+      "hidden": false,
+      "display": "Родительский тикет"
+     },
+     {
+      "type": "standard",
+      "id": "assignee",
+      "key": "assignee",
+      "name": "Исполнитель",
+      "schema": {
+       "type": "user"
+      },
+      "fieldType": "user",
+      "qlFieldType": "string",
+      "required": false,
+      "container": false,
+      "readonly": false,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 21,
+      "value": [
+       {
+        "fixed": {
+         "id": 8000000000000903,
+         "display": "Kirill Andropov",
+         "cloudUid": "ajevs2f44dhptf04doso",
+         "login": "kirill.andropov@astrazeneca.com",
+         "gender": "male",
+         "firstName": "Kirill",
+         "lastName": "Andropov",
+         "email": "kirill.andropov@astrazeneca.com",
+         "external": false,
+         "robot": false,
+         "effectiveLicenseType": 300,
+         "trackerUid": 8000000000000903
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": 8000000000000379,
+         "display": "Boris Korolev",
+         "cloudUid": "aje5bcp1us1pujb6uukl",
+         "login": "boris.korolev@astrazeneca.com",
+         "gender": "male",
+         "firstName": "Boris",
+         "lastName": "Korolev",
+         "dismissed": true,
+         "email": "boris.korolev@astrazeneca.com",
+         "external": false,
+         "robot": false,
+         "effectiveLicenseType": 300,
+         "trackerUid": 8000000000000379
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": 8000000000000335,
+         "display": "Борис Королёв",
+         "cloudUid": "ajeh2ai7h09e20n25ttc",
+         "passportUid": 137032063,
+         "login": "boriska104",
+         "gender": "male",
+         "firstName": "Борис",
+         "lastName": "Королёв",
+         "dismissed": true,
+         "hasLicense": false,
+         "email": "boriska104@yandex.ru",
+         "external": false,
+         "robot": false,
+         "effectiveLicenseType": 200,
+         "trackerUid": 8000000000000335
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": 8000000000000337,
+         "display": "Борис Королев",
+         "cloudUid": "ajef3nv3eihc1r1gn4ho",
+         "passportUid": 2054126833,
+         "login": "az.boris.korolev",
+         "gender": "male",
+         "firstName": "Борис",
+         "lastName": "Королев",
+         "dismissed": true,
+         "hasLicense": false,
+         "email": "az.boris.korolev@yandex.ru",
+         "external": false,
+         "robot": false,
+         "effectiveLicenseType": 200,
+         "trackerUid": 8000000000000337
+        },
+        "invert": false
+       }
+      ],
+      "fullLocalization": {
+       "ru": "Исполнитель",
+       "en": "Assignee"
+      },
+      "hidden": false,
+      "display": "Исполнитель"
+     },
+     {
+      "type": "standard",
+      "id": "type",
+      "key": "type",
+      "name": "Тип",
+      "schema": {
+       "type": "reference",
+       "required": true
+      },
+      "fieldType": "issuetype",
+      "qlFieldType": "string",
+      "required": true,
+      "container": false,
+      "readonly": false,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 2,
+      "value": [
+       {
+        "fixed": {
+         "id": "30",
+         "display": "Доступ",
+         "key": "dostup"
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": "4",
+         "display": "Улучшение",
+         "key": "improvement"
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": "10",
+         "display": "Запрос на обслуживание",
+         "key": "serviceRequest"
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": "1",
+         "display": "Ошибка",
+         "key": "bug"
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": "7",
+         "display": "Story",
+         "key": "story"
+        },
+        "invert": false
+       }
+      ],
+      "fullLocalization": {
+       "ru": "Тип",
+       "en": "Type"
+      },
+      "hidden": false,
+      "display": "Тип"
+     },
+     {
+      "type": "standard",
+      "id": "queue",
+      "key": "queue",
+      "name": "Очередь",
+      "schema": {
+       "type": "reference",
+       "required": true
+      },
+      "fieldType": "queue",
+      "qlFieldType": "string",
+      "required": true,
+      "container": false,
+      "readonly": true,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 1,
+      "value": [
+       {
+        "fixed": {
+         "id": "7",
+         "display": "Tracker & Datalens support",
+         "key": "TRACKERSUPPORT"
+        },
+        "invert": false
+       }
+      ],
+      "fullLocalization": {
+       "ru": "Очередь",
+       "en": "Queue"
+      },
+      "hidden": false,
+      "display": "Очередь"
+     }
+    ],
+    "filterFieldsOrder": [
+     {
+      "type": "standard",
+      "id": "queue",
+      "key": "queue",
+      "name": "Очередь",
+      "schema": {
+       "type": "reference",
+       "required": true
+      },
+      "fieldType": "queue",
+      "qlFieldType": "string",
+      "required": true,
+      "container": false,
+      "readonly": true,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 1,
+      "fullLocalization": {
+       "ru": "Очередь",
+       "en": "Queue"
+      },
+      "hidden": false,
+      "display": "Очередь"
+     },
+     {
+      "type": "standard",
+      "id": "type",
+      "key": "type",
+      "name": "Тип",
+      "schema": {
+       "type": "reference",
+       "required": true
+      },
+      "fieldType": "issuetype",
+      "qlFieldType": "string",
+      "required": true,
+      "container": false,
+      "readonly": false,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 2,
+      "fullLocalization": {
+       "ru": "Тип",
+       "en": "Type"
+      },
+      "hidden": false,
+      "display": "Тип"
+     },
+     {
+      "type": "standard",
+      "id": "assignee",
+      "key": "assignee",
+      "name": "Исполнитель",
+      "schema": {
+       "type": "user"
+      },
+      "fieldType": "user",
+      "qlFieldType": "string",
+      "required": false,
+      "container": false,
+      "readonly": false,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 21,
+      "fullLocalization": {
+       "ru": "Исполнитель",
+       "en": "Assignee"
+      },
+      "hidden": false,
+      "display": "Исполнитель"
+     },
+     {
+      "type": "standard",
+      "id": "parent",
+      "key": "parent",
+      "name": "Родительский тикет",
+      "schema": {
+       "type": "issue"
+      },
+      "fieldType": "issue",
+      "qlFieldType": "string",
+      "required": false,
+      "container": false,
+      "readonly": false,
+      "options": false,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 36,
+      "fullLocalization": {
+       "ru": "Родительский тикет",
+       "en": "Parent issue"
+      },
+      "hidden": false,
+      "display": "Родительский тикет"
+     }
+    ]
+   },
+   "enabled": false
+  },
+  "removeFilterSettings": {
+   "statuses": [
+    {
+     "id": "584fb66ba6cd6166fee4c00e",
+     "version": 1,
+     "key": "cancelled",
+     "name": "Отменено",
+     "description": "Cancelled status",
+     "order": 1400,
+     "type": "cancelled",
+     "shortId": 14
+    },
+    {
+     "id": "584fb66ba6cd6166fee4c008",
+     "version": 1,
+     "key": "closed",
+     "name": "Закрыт",
+     "description": "Closed status",
+     "order": 800,
+     "type": "done",
+     "shortId": 8
+    }
+   ],
+   "checkResolutionPresence": false,
+   "maxTimeInToRemoveState": "P2W",
+   "enabled": true
+  },
+  "removeActionSettings": {
+   "statuses": [
+    {
+     "id": "584fb66ba6cd6166fee4c00e",
+     "version": 1,
+     "key": "cancelled",
+     "name": "Отменено",
+     "description": "Cancelled status",
+     "order": 1400,
+     "type": "cancelled",
+     "shortId": 14
+    },
+    {
+     "id": "584fb66ba6cd6166fee4c008",
+     "version": 1,
+     "key": "closed",
+     "name": "Закрыт",
+     "description": "Closed status",
+     "order": 800,
+     "type": "done",
+     "shortId": 8
+    }
+   ],
+   "checkResolutionPresence": false,
+   "maxTimeInToRemoveState": "P2W",
+   "enabled": true
+  },
+  "addActionSettings": {
+   "liveFilter": {
+    "fieldValues": [
+     {
+      "type": "standard",
+      "id": "parent",
+      "key": "parent",
+      "name": "Родительский тикет",
+      "schema": {
+       "type": "issue"
+      },
+      "fieldType": "issue",
+      "qlFieldType": "string",
+      "required": false,
+      "container": false,
+      "readonly": false,
+      "options": false,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 36,
+      "value": [
+       {
+        "fixed": {
+         "id": "67ab49fb050569394edba80f",
+         "display": "Заявки на доступ в Yandex Tracker / Wiki",
+         "key": "TRACKERSUPPORT-242",
+         "summary": "Заявки на доступ в Yandex Tracker / Wiki",
+         "hasResolution": false
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": "67ab55b2050569394edbbb47",
+         "display": "Улучшения Tracker / Wiki. Рост удовлетворенности пользователей",
+         "key": "TRACKERSUPPORT-523",
+         "summary": "Улучшения Tracker / Wiki. Рост удовлетворенности пользователей",
+         "hasResolution": false
+        },
+        "invert": false
+       }
+      ],
+      "fullLocalization": {
+       "ru": "Родительский тикет",
+       "en": "Parent issue"
+      },
+      "hidden": false,
+      "display": "Родительский тикет"
+     },
+     {
+      "type": "standard",
+      "id": "assignee",
+      "key": "assignee",
+      "name": "Исполнитель",
+      "schema": {
+       "type": "user"
+      },
+      "fieldType": "user",
+      "qlFieldType": "string",
+      "required": false,
+      "container": false,
+      "readonly": false,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 21,
+      "value": [
+       {
+        "fixed": {
+         "id": 8000000000000903,
+         "display": "Kirill Andropov",
+         "cloudUid": "ajevs2f44dhptf04doso",
+         "login": "kirill.andropov@astrazeneca.com",
+         "gender": "male",
+         "firstName": "Kirill",
+         "lastName": "Andropov",
+         "email": "kirill.andropov@astrazeneca.com",
+         "external": false,
+         "robot": false,
+         "effectiveLicenseType": 300,
+         "trackerUid": 8000000000000903
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": 8000000000000379,
+         "display": "Boris Korolev",
+         "cloudUid": "aje5bcp1us1pujb6uukl",
+         "login": "boris.korolev@astrazeneca.com",
+         "gender": "male",
+         "firstName": "Boris",
+         "lastName": "Korolev",
+         "dismissed": true,
+         "email": "boris.korolev@astrazeneca.com",
+         "external": false,
+         "robot": false,
+         "effectiveLicenseType": 300,
+         "trackerUid": 8000000000000379
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": 8000000000000335,
+         "display": "Борис Королёв",
+         "cloudUid": "ajeh2ai7h09e20n25ttc",
+         "passportUid": 137032063,
+         "login": "boriska104",
+         "gender": "male",
+         "firstName": "Борис",
+         "lastName": "Королёв",
+         "dismissed": true,
+         "hasLicense": false,
+         "email": "boriska104@yandex.ru",
+         "external": false,
+         "robot": false,
+         "effectiveLicenseType": 200,
+         "trackerUid": 8000000000000335
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": 8000000000000337,
+         "display": "Борис Королев",
+         "cloudUid": "ajef3nv3eihc1r1gn4ho",
+         "passportUid": 2054126833,
+         "login": "az.boris.korolev",
+         "gender": "male",
+         "firstName": "Борис",
+         "lastName": "Королев",
+         "dismissed": true,
+         "hasLicense": false,
+         "email": "az.boris.korolev@yandex.ru",
+         "external": false,
+         "robot": false,
+         "effectiveLicenseType": 200,
+         "trackerUid": 8000000000000337
+        },
+        "invert": false
+       }
+      ],
+      "fullLocalization": {
+       "ru": "Исполнитель",
+       "en": "Assignee"
+      },
+      "hidden": false,
+      "display": "Исполнитель"
+     },
+     {
+      "type": "standard",
+      "id": "type",
+      "key": "type",
+      "name": "Тип",
+      "schema": {
+       "type": "reference",
+       "required": true
+      },
+      "fieldType": "issuetype",
+      "qlFieldType": "string",
+      "required": true,
+      "container": false,
+      "readonly": false,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 2,
+      "value": [
+       {
+        "fixed": {
+         "id": "30",
+         "display": "Доступ",
+         "key": "dostup"
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": "4",
+         "display": "Улучшение",
+         "key": "improvement"
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": "10",
+         "display": "Запрос на обслуживание",
+         "key": "serviceRequest"
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": "1",
+         "display": "Ошибка",
+         "key": "bug"
+        },
+        "invert": false
+       },
+       {
+        "fixed": {
+         "id": "7",
+         "display": "Story",
+         "key": "story"
+        },
+        "invert": false
+       }
+      ],
+      "fullLocalization": {
+       "ru": "Тип",
+       "en": "Type"
+      },
+      "hidden": false,
+      "display": "Тип"
+     },
+     {
+      "type": "standard",
+      "id": "queue",
+      "key": "queue",
+      "name": "Очередь",
+      "schema": {
+       "type": "reference",
+       "required": true
+      },
+      "fieldType": "queue",
+      "qlFieldType": "string",
+      "required": true,
+      "container": false,
+      "readonly": true,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 1,
+      "value": [
+       {
+        "fixed": {
+         "id": "7",
+         "display": "Tracker & Datalens support",
+         "key": "TRACKERSUPPORT"
+        },
+        "invert": false
+       }
+      ],
+      "fullLocalization": {
+       "ru": "Очередь",
+       "en": "Queue"
+      },
+      "hidden": false,
+      "display": "Очередь"
+     }
+    ],
+    "filterFieldsOrder": [
+     {
+      "type": "standard",
+      "id": "queue",
+      "key": "queue",
+      "name": "Очередь",
+      "schema": {
+       "type": "reference",
+       "required": true
+      },
+      "fieldType": "queue",
+      "qlFieldType": "string",
+      "required": true,
+      "container": false,
+      "readonly": true,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 1,
+      "fullLocalization": {
+       "ru": "Очередь",
+       "en": "Queue"
+      },
+      "hidden": false,
+      "display": "Очередь"
+     },
+     {
+      "type": "standard",
+      "id": "type",
+      "key": "type",
+      "name": "Тип",
+      "schema": {
+       "type": "reference",
+       "required": true
+      },
+      "fieldType": "issuetype",
+      "qlFieldType": "string",
+      "required": true,
+      "container": false,
+      "readonly": false,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 2,
+      "fullLocalization": {
+       "ru": "Тип",
+       "en": "Type"
+      },
+      "hidden": false,
+      "display": "Тип"
+     },
+     {
+      "type": "standard",
+      "id": "assignee",
+      "key": "assignee",
+      "name": "Исполнитель",
+      "schema": {
+       "type": "user"
+      },
+      "fieldType": "user",
+      "qlFieldType": "string",
+      "required": false,
+      "container": false,
+      "readonly": false,
+      "options": true,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 21,
+      "fullLocalization": {
+       "ru": "Исполнитель",
+       "en": "Assignee"
+      },
+      "hidden": false,
+      "display": "Исполнитель"
+     },
+     {
+      "type": "standard",
+      "id": "parent",
+      "key": "parent",
+      "name": "Родительский тикет",
+      "schema": {
+       "type": "issue"
+      },
+      "fieldType": "issue",
+      "qlFieldType": "string",
+      "required": false,
+      "container": false,
+      "readonly": false,
+      "options": false,
+      "orderable": true,
+      "suggest": true,
+      "custom": false,
+      "order": 36,
+      "fullLocalization": {
+       "ru": "Родительский тикет",
+       "en": "Parent issue"
+      },
+      "hidden": false,
+      "display": "Родительский тикет"
+     }
+    ]
+   },
+   "enabled": false
+  }
+ }
+}
