@@ -31,7 +31,12 @@
 - [x] Локальные юнит-тесты (test_local.py, стаб requests): ВСЕ ПРОЙДЕНЫ — unknown type→0 (T-TECH, T-EPIC), «Ответ получен»=«В работе»=28.95, clarifying +10 применяется, Закрыт/без изменений не патчатся, спринтовая доска работает
 - [x] Деплой новой версии: versionId **d4efrrnbd79sii8r8nqe** (2026-11-02T13:36:09Z), $LATEST
 - [x] Тест живой функции: вызов public URL → 200 за 71.5с, «Задач в выборке: 1574», **updated_count=141, zeroed_count=8**. Сверка: 1723 «Ответ получен»=28.55 ✓ (=локальный пересчёт, коэфф. статуса 5), 1733 «Ответ получен»=29.15 ✓, **1698 «Технологическая»=0.0 ✓**, 1711 «В работе»=10.15 ✓ (было устаревшее 400.0).
-- [ ] Повторный вызов (идемпотентность/skip-if-unchanged → updated_count≈0)
+- [x] Повторный вызов: 200 за 28.5с, updated_count=5 (легитимный дрейф SLA/deadline-очков), zeroed=0 → skip-if-unchanged работает, петли нет
+- [x] End-to-end: changelog TRACKERSUPPORT-1723 13:37:20 — uniquePriority null→28.55, **executedTriggers: 462 success=true** («отправлен HTTP-запрос на домен functions.yandexcloud.net»)
+- [x] GitHub: PAT не смог создать репо (403, нет Administration) → «Вопрос» в 1698 (коммент 128770) → ask_user → **пользователь создал репо вручную: https://github.com/act3run-debug/priotityfunction** (token имеет push:true на него)
+- [x] Push: README.md (с датой 2026-11-02) + все рабочие файлы → main (32cc29c, 98a40ba). uploads/ и secrets.json в .gitignore (в публичный репо не попали).
+- [x] Комментарий «Задача завершена» в TRACKERSUPPORT-1698 (коммент 128778, summonee kirill.andropov@astrazeneca.com)
+- [x] Отчёт пользователю
 - [ ] GitHub-репо с датой + push
 - [ ] Комментарий «Задача завершена» в TRACKERSUPPORT-1698
 - [ ] Отчёт
@@ -51,7 +56,11 @@
 - Действия 28–30: changelog-диагностика последней записи не дала дат (не критично). Написан новый src/index.py.
 - Действие 32–33: test_local.py — все проверки пройдены (см. план).
 - Действия 35–39: deploy.py → версия d4efrrnbd79sii8r8nqe задеплоена; живой вызов 200/71.5с/141 обновлено/8 обнулено; поля на 1723, 1733, 1698, 1711 сверены с локальным пересчётом — совпадают.
-- Далее: повторный вызов (идемпотентность), GitHub-репо, комментарий в 1698, отчёт. Деплой был новой версии функции d4eio0bqlv9h1rvnrbna (createVersion: python311, index.handler, 1024MB, 180s, env TOKEN=OAuth из secrets.json/ORG, content=zip base64; $LATEST). Откат при проблеме = redeploy старого кода из uploads (он сохранён). После деплоя: вызов public URL, проверка 1723/1733 (коэфф. 5), 1698 (0), повторный вызов (skip-if-unchanged → updated_count≈0).
+- Действия 41–48: повторный вызов — 5 дрейфовых обновлений (идемпотентность ок); webhooks/log триггера отдаёт только 10 записей от 2026-06-01 (502 в день создания функции, пагинация/perPage не работают); доказательство срабатывания триггера — executedTriggers в changelog 1723 (462, success=true). Владелец OAuth-токена функции — uid 904 (тестовый Кирилл).
+- Действия 49–52: GitHub whoami=act3run-debug; создание репо 403 (нет Administration у fine-grained PAT); git init+commit 32cc29c локально.
+- Действия 53–55: комментарий «Вопрос» в 1698 (id 128770); ask_user (автор записей — uid 808 «Kirill Andropov», владелец выданного IAM).
+- Действия 56–60: пользователь создал https://github.com/act3run-debug/priotityfunction; PAT: push=true; README.md; push main (32cc29c, 98a40ba); комментарий «Задача завершена» (id 128778). ЗАДАЧА ВЫПОЛНЕНА.
+- Далее: вопрос пользователю (репо), затем push + «Задача завершена» + отчёт. Деплой был новой версии функции d4eio0bqlv9h1rvnrbna (createVersion: python311, index.handler, 1024MB, 180s, env TOKEN=OAuth из secrets.json/ORG, content=zip base64; $LATEST). Откат при проблеме = redeploy старого кода из uploads (он сохранён). После деплоя: вызов public URL, проверка 1723/1733 (коэфф. 5), 1698 (0), повторный вызов (skip-if-unchanged → updated_count≈0).
 
 ## 5. Находки API
 - GET /v3/boards/{id}/sprints для канбан-доски → 400 «У доски этого типа не может быть спринтов» (функция трактовала как «нет спринта» и молча пропускала доску — весь «сбой»).
@@ -70,9 +79,13 @@
 - Статус «Согласование» (agreement, 1 задача) не в STATUS_COEFFS → default 1 (пользователь про него не просил).
 
 ## 7. Тестовые артефакты и уборка
-- (пока ничего не создано)
+- В API ничего тестового НЕ создавалось (только штатные записи uniquePriority функцией — это и есть цель задачи).
+- Локально: board214.json (диагностика), src/index.py, test_local.py, deploy.py, helpers.py, secrets.json (gitignored), .gitignore, git-репо (commit 32cc29c).
+- Уборка не требуется; 1698 не трогать (уведомление — только комментарий по правилам).
 
 ## 8. Для следующего агента
+- ЗАДАЧА ЗАВЕРШЕНА (2026-11-02). Рабочая версия функции: d4efrrnbd79sii8r8nqe. Репо: https://github.com/act3run-debug/priotityfunction (main).
+- Если понадобится править: код в src/index.py, тесты test_local.py (без сети), деплой deploy.py (createVersion, $LATEST).
 - Счётчик действий ведётся в чате; каждые 10 действий — обновлять этот файл.
 - IAM/OAuth/PAT в файлах нет (кроме git-credentials, которые не переживают сессию). При 401/403 — прерваться и просить новый IAM.
 - Код функции — в `src/index.py` (копия из uploads + правки). Деплой — `deploy.py` (createVersion + poll операции). Тесты — `test_local.py`.
