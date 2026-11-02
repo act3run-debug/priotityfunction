@@ -15,6 +15,11 @@ BOARD_CONFIGS = {
 }
 
 # === НАСТРОЙКИ ПРИОРИТЕТА (Ваши оригинальные) ===
+# Учёт оценки времени (estimation) в расчёте:
+#   True  — оценка участвует (бонус/штраф за длительность, критичность дедлайна и SLA)
+#   False — оценка времени не учитывается в расчётах вообще
+USE_ESTIMATION = True
+
 PRIORITY_COEFFS = {
     'блокер': 5, 'критичный': 4, 'средний': 3, 'низкий': 2, 'незначительный': 1,
     'blocker': 5, 'critical': 4, 'major': 3, 'minor': 2, 'trivial': 1
@@ -120,22 +125,24 @@ def calculate_priority(task):
         deadline = make_aware(task['deadline'])
         hours_to_deadline = (deadline - now_utc).total_seconds() / 3600
 
-    estimated_duration = parse_duration(task.get('estimation'))
+    # None — оценка отключена флагом USE_ESTIMATION и нигде ниже не учитывается
+    estimated_duration = parse_duration(task.get('estimation')) if USE_ESTIMATION else None
 
     # Бонус/штраф за длительность
     duration_bonus = 0
-    if estimated_duration <= 0.33:
-        duration_bonus = DURATION_BONUS_SHORT
-    elif estimated_duration > DURATION_BASELINE_HOURS:
-        extra_hours = estimated_duration - DURATION_BASELINE_HOURS
-        duration_bonus = DURATION_PENALTY_PER_HOUR * extra_hours
+    if estimated_duration is not None:
+        if estimated_duration <= 0.33:
+            duration_bonus = DURATION_BONUS_SHORT
+        elif estimated_duration > DURATION_BASELINE_HOURS:
+            extra_hours = estimated_duration - DURATION_BASELINE_HOURS
+            duration_bonus = DURATION_PENALTY_PER_HOUR * extra_hours
 
     # Критичность дедлайна
     deadline_urgency = 0
     if has_deadline:
         if hours_to_deadline < 0:
             deadline_urgency = 10 + abs(hours_to_deadline) * 0.5
-        elif estimated_duration > hours_to_deadline:
+        elif estimated_duration is not None and estimated_duration > hours_to_deadline:
             deadline_urgency = DEADLINE_CRITICAL_BONUS
         elif hours_to_deadline < 72:
             deadline_urgency = (72 - hours_to_deadline) * DEADLINE_CLOSE_MULTIPLIER
@@ -164,7 +171,7 @@ def calculate_priority(task):
     if closest_fail_hours != float('inf'):
         if closest_fail_hours < 0:
             sla_urgency_score = SLA_OVERDUE_BASE_BONUS + abs(closest_fail_hours) * SLA_OVERDUE_PER_HOUR_BONUS
-        elif estimated_duration > closest_fail_hours:
+        elif estimated_duration is not None and estimated_duration > closest_fail_hours:
             sla_urgency_score = SLA_CRITICAL_BONUS
         elif closest_fail_hours < 72:
             sla_urgency_score = (72 - closest_fail_hours) * SLA_CLOSE_FAIL_MULTIPLIER

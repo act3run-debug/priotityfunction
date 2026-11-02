@@ -97,6 +97,43 @@ check("T-SPR" in got, "спринтовая доска 555 не обработа
 check(body["updated_count"] == len(got), "updated_count != число PATCH")
 
 print("\nРАСЧЁТНЫЕ ЗНАЧЕНИЯ: «Ответ получен» =", got.get("T-OTVET"), "| «В работе» =", got.get("T-INPR"))
+
+# === Фаза 2: флаг USE_ESTIMATION ===
+_now = datetime.now(timezone.utc)
+def _ts(dt): return dt.strftime("%Y-%m-%dT%H:%M:%S.000+0000")
+
+cases = {
+    "none": task("E-NONE", "Ошибка", "Новый"),
+    "10h":  task("E-10H",  "Ошибка", "Новый", estimation="10h"),
+    "10m":  task("E-10M",  "Ошибка", "Новый", estimation="10m"),
+    "dl":   task("E-DL",   "Ошибка", "Новый", estimation="10h", deadline=_ts(_now + timedelta(hours=2))),
+    "sla":  task("E-SLA",  "Ошибка", "Новый", estimation="10h",
+                 sla=[{"clockStatus": "STARTED", "violationStatus": "NOT_VIOLATED", "failAt": _ts(_now + timedelta(hours=3))}]),
+}
+def run_all():
+    return {k: index.calculate_priority(v) for k, v in cases.items()}
+
+index.USE_ESTIMATION = True
+on = run_all()
+index.USE_ESTIMATION = False
+off = run_all()
+index.USE_ESTIMATION = True  # вернуть как в проде
+
+# ON: оценка влияет (короткий бонус +20 vs штраф 10h −0.3)
+check(abs((on["none"] - on["10h"]) - 20.3) < 0.01, f"ON: none−10h != 20.3 ({on['none']-on['10h']:.4f})")
+check(abs(on["none"] - on["10m"]) < 0.01, "ON: none и 10m должны совпадать (оба короткий бонус)")
+# OFF: оценка не учитывается ВОВСЕ — все варианты равны
+check(abs(off["none"] - off["10h"]) < 0.01 and abs(off["none"] - off["10m"]) < 0.01,
+      f"OFF: задачи с разной оценкой должны быть равны: none={off['none']}, 10h={off['10h']}, 10m={off['10m']}")
+# OFF: короткий бонус исчезает (−20 к базе без оценки)
+check(abs((on["none"] - off["none"]) - 20.0) < 0.01, f"OFF: короткий бонус не убран ({on['none']-off['none']:.4f})")
+# Дедлайн (2ч, оценка 10ч): ON → критичность 10 + штраф 0.3; OFF → только «<72ч» = 35 ⇒ разница 25.3
+check(abs((off["dl"] - on["dl"]) - 25.3) < 0.05, f"DL: OFF−ON != 25.3 ({off['dl']-on['dl']:.4f})")
+# SLA (fail через 3ч, оценка 10ч): ON → 15*1.5=22.5 −0.3; OFF → 34.5*1.5=51.75 ⇒ разница 29.55
+check(abs((off["sla"] - on["sla"]) - 29.55) < 0.05, f"SLA: OFF−ON != 29.55 ({off['sla']-on['sla']:.4f})")
+print("\nФаза 2 USE_ESTIMATION  ON :", {k: round(v, 2) for k, v in on.items()})
+print("Фаза 2 USE_ESTIMATION  OFF:", {k: round(v, 2) for k, v in off.items()})
+
 if errors:
     print("\nПРОВАЛЕНО:"); [print(" -", e) for e in errors]; sys.exit(1)
 print("\nВСЕ ТЕСТЫ ПРОЙДЕНЫ ✔")
